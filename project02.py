@@ -12,11 +12,6 @@ Assignment Information
 
 =+=============================================================================
 '''
-did you complete the information above? delete this line if yes
-
-
-
-
 
 # write your code here (and delete this comment)
 # ----------------------------
