@@ -36,7 +36,33 @@ def forward(unit):
 		motor[motorC] = 0
 		wait1Msec(500)
 
-
+def turnLeft90(unit):
+	countsToTravel = (17.78/20) * (360) * unit
+	
+	nMotorEncoder[motorB] = 0
+	nMotorEncoder[motorC] = 0
+	nMotorEncoderTarget[motorB] = countsToTravel
+	nMotorEncoderTarget[motorC] = countsToTravel
+	motor[motorB] = 50
+	motor[motorC] = -50
+	while(nMotorRunState[motorB] != runStateIdle && nMotorRunState[motorC] != runStateIdle):
+		motor[motorB] = 0
+		motor[motorC] = 0
+		wait1Msec(500)
+		
+def turnRight90(unit):
+	countsToTravel = (17.78/20) * (360) * unit
+	
+	nMotorEncoder[motorB] = 0
+	nMotorEncoder[motorC] = 0
+	nMotorEncoderTarget[motorB] = countsToTravel
+	nMotorEncoderTarget[motorC] = countsToTravel
+	motor[motorB] = -50
+	motor[motorC] = 50
+	while(nMotorRunState[motorB] != runStateIdle && nMotorRunState[motorC] != runStateIdle):
+		motor[motorB] = 0
+		motor[motorC] = 0
+		wait1Msec(500)
 
 '''
 ===============================================================================
