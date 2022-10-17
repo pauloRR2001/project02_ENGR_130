@@ -79,3 +79,4 @@ while foundGoal == True: #We will need to iterate through the map every single t
                 currentGoal += 1 #Increase goal by 1 to move onwards
                 occurrence = 1 #Set the occurrence count back to 1
             
+return updateMap
