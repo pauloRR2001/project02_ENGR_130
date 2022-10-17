@@ -1,4 +1,4 @@
-def pathFinder(updateMap):  
+def Nissan2002PathFinder(updateMap):  
     currentGoal = 2
     foundGoal = True
     occurrence = 1
