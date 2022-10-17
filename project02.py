@@ -21,29 +21,29 @@ Assignment Information
 map = 
 
 """
+from microbit import *
+import robotbit
+import numpy as np
 
+map = np.array([[0,0,0,0,0],
+		[0,1,99,1,0],
+		[0,1,1,1,0],
+		[0,0,0,0,0],
+		[0,0,0,0,0],
+		[0,0,0,0,0],
+		[0,0,0,0,0],
+		[0,0,2,0,0],
+		[0,0,0,0,0],
+		[0,0,0,0,0]])
+	       
 def main():
-	WavefrontSearch()
+	nissanPathFinder()
 	NavigateToGoal()
 	wait1Msec(5000)
 
-def forward(unit):
-	#wheel circumference = 20 cm
-	#one block = 17.78 cm
-	countsToTravel = (17.78/20) * (360) * unit
-	
-	nMotorEncoder[motorB] = 0
-	nMotorEncoder[motorC] = 0
-	nMotorEncoderTarget[motorB] = countsToTravel
-	nMotorEncoderTarget[motorC] = countsToTravel
-	motor[motorB] = 50
-	motor[motorC] = 50
-	while(nMotorRunState[motorB] != runStateIdle && nMotorRunState[motorC] != runStateIdle):
-		motor[motorB] = 0
-		motor[motorC] = 0
-		wait1Msec(500)
-
-
+def pathFinder():
+	goal_x = 0
+	goal_y = 0
 
 
 # write your code here (and delete this comment)
