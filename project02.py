@@ -18,6 +18,7 @@ Assignment Information
 #2 = goal
 #99 = robot
 
+map = 
 
 """
 
