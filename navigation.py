@@ -126,7 +126,49 @@ while True:
     else:
         Drive(0,0)
     sleep(20)
+#microbit stuff
+import time
+from microbit import *
+import robotbit_library as r
 
+
+t = time.ticks_ms()
+print(t)
+
+count = 0
+M1A = 0x1
+M1B = 0x2
+M2A = 0x3
+M2B = 0x4
+r.setup()
+
+
+rot = (17.78/20) * (360)
+def Drive(lft,rgt):
+    r.motor(M2B, lft)
+    r.motor(M1A, rgt)
+def die():
+    Drive(0,0)
+
+while True:
+    Drive(-50.025,50)
+    sleep(725)
+    die()
+    if nextdirection == "E":
+        Drive(-50,-50)
+        display.show(Image.ARROW_E)
+        sleep(725)
+    elif nextdirection == "W":
+        Drive(50,50)
+        display.show(Image.ARROW_W)
+        sleep(725)
+    elif nextdirection == "N":
+        Drive(-50.025,50)
+        display.show(Image.ARROW_N)
+        sleep(725)
+        
+    sleep(1000)
+    
 '''
 ===============================================================================
 ACADEMIC INTEGRITY STATEMENT
