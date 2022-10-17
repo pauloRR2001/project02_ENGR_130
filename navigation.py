@@ -127,15 +127,9 @@ while True:
         Drive(0,0)
     sleep(20)
 #microbit stuff
-import time
 from microbit import *
 import robotbit_library as r
 
-
-t = time.ticks_ms()
-print(t)
-
-count = 0
 M1A = 0x1
 M1B = 0x2
 M2A = 0x3
