@@ -25,8 +25,6 @@ import radio
 from time import sleep_us
 from machine import time_pulse_us
 
-chnl = 19 #change channel to your team number
-
 def forward(unit):
 	#wheel circumference = 20 cm
 	#one block = 17.78 cm
@@ -79,8 +77,6 @@ M2A = 0x3
 M2B = 0x4
 r.setup()
 
-radio.config(channel=chnl)
-radio.on()
 
 def Drive(lft,rgt):
     r.motor(M2B, lft)
@@ -104,7 +100,7 @@ def distance(tp, ep):
         # back a scaled value
     return ts  # Return timeout error as a negative number (-1)
 while True:
-    s = radio.receive()
+    s = pathfinder()
     if s is not None:
         dist = distance(TRIGGER, ECHO)  # set up to read as a ping)))
         # sensor same pin
