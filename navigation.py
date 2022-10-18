@@ -21,6 +21,7 @@ Author: ramir378
 ------------------------------------
 """
 
+
 from microbit import *
 import robotbit_library as r
 
@@ -73,7 +74,8 @@ def pathReader(updateMap):
     counts = 0
     countw = 0
     counte = 0
-    timer = 
+    rotation1 = 0
+    rotation2 = 0
     while n < 10:
 
         north, south, east, west = 1000, 1000, 1000, 1000
@@ -127,7 +129,8 @@ def pathReader(updateMap):
             if (east < south) and (east < west) and (east < north) and (east != 1):
                 j += 1
                 nextdirection = "E"
-        
+                
+    #David's failed if statements    
         face = nextdirection
         if nextdirection == 'W':
             countw += 1
@@ -147,9 +150,9 @@ def pathReader(updateMap):
     print(listtt)
 
 
-def movement(nextdirection):
+def movement(nextdirection, rotation1, rotation2):
     if nextdirection == "N":
-        Drive(50,-50)
+        Drive(50+rotation1,-50+rotation2)
         display.show(Image.ARROW_N)
         sleep(765)
         Drive(0,0)
