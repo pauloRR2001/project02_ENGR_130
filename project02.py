@@ -23,7 +23,9 @@ map =
 """
 from microbit import *
 import robotbit
-import numpy as np
+
+import pathFinder as path
+import navigation as nav
 
 map = [[0,0,0,0,0],
 	[0,1,99,1,0],
@@ -37,9 +39,9 @@ map = [[0,0,0,0,0],
 	[0,0,0,0,0]]
 	       
 def main():
-	updateMap = nissanPathFinder(map)
+	updateMap = path.nissanPathFinder(map)
 	
-	NavigateToGoal(updateMap)
+	nav.NavigateToGoal(updateMap)
 	
 	wait1Msec(5000)
 	
