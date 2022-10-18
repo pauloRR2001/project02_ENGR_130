@@ -25,6 +25,8 @@ Author: ramir378
 from microbit import *
 import robotbit_library as r
 
+import pathFinder as path
+
 
 count = 0
 M1A = 0x1
