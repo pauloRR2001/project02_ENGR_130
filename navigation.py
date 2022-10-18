@@ -39,6 +39,7 @@ def Drive(lft,rgt):
 
 
 nextdirection = pathfinder()
+
 def movement(nextdirection):
     
     while True:
@@ -70,8 +71,10 @@ def movement(nextdirection):
         Drive(-50,50)
         display.show(Image.CHESSBOARD)
         sleep(1000)
+	
+	return ([i,j])
 
-movement(nextdirection)
+def obstacleScanner([i,j], updateMap)
     
 '''
 ===============================================================================
