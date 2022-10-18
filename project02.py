@@ -25,25 +25,26 @@ from microbit import *
 import robotbit
 import numpy as np
 
-map = np.array([[0,0,0,0,0],
-		[0,1,99,1,0],
-		[0,1,1,1,0],
-		[0,0,0,0,0],
-		[0,0,0,0,0],
-		[0,0,0,0,0],
-		[0,0,0,0,0],
-		[0,0,2,0,0],
-		[0,0,0,0,0],
-		[0,0,0,0,0]])
+map = [[0,0,0,0,0],
+	[0,1,99,1,0],
+	[0,1,1,1,0],
+	[0,0,0,0,0],
+	[0,0,0,0,0],
+	[0,0,0,0,0],
+	[0,0,0,0,0],
+	[0,0,2,0,0],
+	[0,0,0,0,0],
+	[0,0,0,0,0]]
 	       
 def main():
-	nissanPathFinder()
-	NavigateToGoal()
+	updateMap = nissanPathFinder(map)
+	
+	NavigateToGoal(updateMap)
+	
 	wait1Msec(5000)
-
-def pathFinder():
-	goal_x = 0
-	goal_y = 0
+	
+if __name__ == '__main__':
+    main()
 
 
 # write your code here (and delete this comment)
