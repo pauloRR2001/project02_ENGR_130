@@ -69,13 +69,19 @@ def pathReader(updateMap):
     
     n = 0
     listtt = []
-    
+    countn = 0
+    counts = 0
+    countw = 0
+    counte = 0
+    timer = 
     while n < 10:
 
         north, south, east, west = 1000, 1000, 1000, 1000
         print(nextdirection)
         listtt.append(nextdirection)
-        movement(nextdirection)
+
+        movement(nextdirection) #callllllllll
+
         n += 1
         print(i, j)
         if i!= 0:
@@ -121,12 +127,27 @@ def pathReader(updateMap):
             if (east < south) and (east < west) and (east < north) and (east != 1):
                 j += 1
                 nextdirection = "E"
+        
+        face = nextdirection
+        if nextdirection == 'W':
+            countw += 1
+        elif nextdirection == 'E':
+            counte += 1
+        elif nextdirection == 'S':
+            counts += 1
+
+        if countw%2 != 0:
+            nextdirection 
+        elif counte%2 != 0:
+
+        elif counts%2 != 0:
+                nextdirection
+        
     Drive(0,0)
+    print(listtt)
 
 
 def movement(nextdirection):
-
-
     if nextdirection == "N":
         Drive(50,-50)
         display.show(Image.ARROW_N)
@@ -137,9 +158,12 @@ def movement(nextdirection):
     elif nextdirection == "E":
         Drive(-50,-50)
         display.show(Image.ARROW_E)
-        sleep(365)
-        sleep(1000)
+        sleep(380)
+        Drive(0,0)
+        sleep(500)
         Drive(50,-50)
+        display.show(Image.ARROW_N)
+        sleep(765)
         Drive(0,0)
         display.show(Image.CHESSBOARD)
         sleep(1000)
@@ -147,27 +171,38 @@ def movement(nextdirection):
     elif nextdirection == "W":
         Drive(50,50)
         display.show(Image.ARROW_W)
-        sleep(365)
-        Drive(50,-50)
-        display.show(Image.CHESSBOARD)
+        sleep(380)
         Drive(0,0)
+        sleep(500)
+        Drive(50,-50)
+        display.show(Image.ARROW_N)
+        sleep(765)
+        Drive(0,0)
+        display.show(Image.CHESSBOARD)
         sleep(1000)
         
     elif nextdirection == "S":
         Drive(-50,-50)
         display.show(Image.ARROW_S)
-        sleep(725)
-        Drive(50,-50)
-        display.show(Image.CHESSBOARD)
+        sleep(720)
         Drive(0,0)
+        sleep(500)
+        Drive(50,-50)
+        display.show(Image.ARROW_N)
+        sleep(765)
+        Drive(0,0)
+        display.show(Image.CHESSBOARD)
         sleep(1000)
         
     elif nextdirection == "STOP":
         Drive(0,0)
         display.show(Image.HAPPY)
+
+    else:
+        Drive(0,0)
         
     Drive(0,0)
-    
+        
 
 def main():
 
