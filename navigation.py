@@ -21,11 +21,8 @@ Author: ramir378
 ------------------------------------
 """
 
-
 from microbit import *
 import robotbit_library as r
-
-import pathFinder as path
 
 
 count = 0
@@ -40,44 +37,144 @@ def Drive(lft,rgt):
     r.motor(M1A, rgt)
 
 
-nextdirection = pathfinder()
+
+updateMap = [[11,12,13,14,0],
+            [10,1,99,1,0],
+            [9,1,1,1,0],
+            [8,7,6,7,0],
+            [7,6,5,6,0],
+            [6,5,4,5,0],
+            [5,4,3,4,0],
+            [4,3,2,3,0],
+            [5,4,3,4,0],
+            [0,0,0,0,0]]
+
+    
+def pathReader(updateMap):
+    nextdirection = 'test'
+    i = -1
+    j = 0
+    start_i = 0
+    start_j = 0
+    for row in updateMap:
+        i = i + 1
+        j= 0
+        for column in row:
+               j = j + 1
+               if column == 99:
+                   start_i = i
+                   start_j = j - 1
+    i = start_i
+    j = start_j
+    
+    n = 0
+    listtt = []
+    
+    while n < 10:
+
+        north, south, east, west = 1000, 1000, 1000, 1000
+        print(nextdirection)
+        listtt.append(nextdirection)
+        movement(nextdirection)
+        n += 1
+        print(i, j)
+        if i!= 0:
+            north = updateMap[i-1][j]
+            if north == 1:
+                north += 1000
+
+        if i != 8:
+            south = updateMap[i+1][j]
+            if south == 1:
+                south += 1000
+
+        if j!=0:
+            west = updateMap[i][j-1]
+            if west == 1:
+                west += 1000
+                
+        if j!=3:   
+            east = updateMap[i][j+1]
+            if east == 1:
+                east += 1000
+
+        print(north, south, west, east)
+        
+        if i != 0:
+            if (north < south) and (north < west) and (north < east) and (north != 1):
+                i -= 1
+                display.show(Image.HAPPY)
+                nextdirection = "N"
+                
+        
+        if i != 8:
+            if (south < north) and (south < west) and (south < east) and (south != 1):
+                i += 1
+                nextdirection = "S"
+            
+        if (j != 0):
+            if (west < south) and (west < north) and (west < east) and (west != 1):
+                j -= 1
+                nextdirection = "W"
+                
+        if j!=3:
+            if (east < south) and (east < west) and (east < north) and (east != 1):
+                j += 1
+                nextdirection = "E"
+    Drive(0,0)
+
 
 def movement(nextdirection):
-    
-    while True:
-        if nextdirection == "N":
-            Drive(-50,50)
-            display.show(Image.ARROW_N)
-            sleep(765)
-            Drive(0,0)
-            sleep(1000)
-            continue
-        elif nextdirection == "E":
-            Drive(-50,-50)
-            display.show(Image.ARROW_E)
-            sleep(365)
-        elif nextdirection == "W":
-            Drive(50,50)
-            display.show(Image.ARROW_W)
-            sleep(365)
-        elif nextdirection == "N":
-            Drive(-50,50)
-            display.show(Image.ARROW_N)
-            sleep(365)
-        elif nextdirection == "S":
-            Drive(-50,-50)
-            display.show(Image.ARROW_S)
-            sleep(725)
+
+
+    if nextdirection == "N":
+        Drive(50,-50)
+        display.show(Image.ARROW_N)
+        sleep(765)
         Drive(0,0)
         sleep(1000)
-        Drive(-50,50)
+        
+    elif nextdirection == "E":
+        Drive(-50,-50)
+        display.show(Image.ARROW_E)
+        sleep(365)
+        sleep(1000)
+        Drive(50,-50)
+        Drive(0,0)
         display.show(Image.CHESSBOARD)
         sleep(1000)
-	
-	return ([i,j])
-
-def obstacleScanner([i,j], updateMap)
+        
+    elif nextdirection == "W":
+        Drive(50,50)
+        display.show(Image.ARROW_W)
+        sleep(365)
+        Drive(50,-50)
+        display.show(Image.CHESSBOARD)
+        Drive(0,0)
+        sleep(1000)
+        
+    elif nextdirection == "S":
+        Drive(-50,-50)
+        display.show(Image.ARROW_S)
+        sleep(725)
+        Drive(50,-50)
+        display.show(Image.CHESSBOARD)
+        Drive(0,0)
+        sleep(1000)
+        
+    elif nextdirection == "STOP":
+        Drive(0,0)
+        display.show(Image.HAPPY)
+        
+    Drive(0,0)
     
+
+def main():
+
+    pathReader(updateMap)
+if __name__ == "__main__":
+    main()
+
 '''
 ===============================================================================
 ACADEMIC INTEGRITY STATEMENT
