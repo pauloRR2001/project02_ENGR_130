@@ -14,6 +14,7 @@ Assignment Information
 
 from microbit import *
 import robotbit_library as r
+import pathFinder as path
 
 count = 0
 M1A = 0x1
@@ -375,7 +376,7 @@ def directionFinder(updateMap):
 
         
 def main():
-    newMap = Nissan2002PathFinder(givenMap)
+    newMap = path.Nissan2002PathFinder(givenMap)
     directionFinder(newMap)
     
     
