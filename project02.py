@@ -27,14 +27,14 @@ def Drive(lft,rgt):
     r.motor(M1A, rgt)
     return 0
 
-givenMap = [[0,1,0,2],
+givenMap = [[0,0,0,0],
             [1,0,1,0],
+            [0,0,1,2],
+            [0,0,1,1],
+            [1,0,1,99],
             [0,0,1,0],
-            [0,0,0,0],
-            [1,1,0,0],
-            [0,0,0,0],
-            [0,1,0,1],
-            [99,1,0,0],
+            [0,1,1,0],
+            [0,1,1,0],
             [0,0,0,0]]
 
 carAngle = 90
@@ -134,7 +134,7 @@ def driveTheCar(nextdirection):
         elif carAngle == 270:
             Drive(50,50) #Turn right for twice as long 
             display.show(Image.ARROW_W)
-            sleep(720)
+            sleep(735)
             Drive(0,0)
             sleep(500)
             Drive(50,-50)
@@ -176,7 +176,7 @@ def driveTheCar(nextdirection):
         elif carAngle == 90:
             Drive(50,50) #Turn right twice as long 
             display.show(Image.ARROW_W)
-            sleep(720)
+            sleep(735)
             Drive(0,0)
             sleep(500)
             Drive(50,-50) #Forward
@@ -218,7 +218,7 @@ def driveTheCar(nextdirection):
         elif carAngle == 180:
             Drive(50,50) #Turn right twice as long 
             display.show(Image.ARROW_W)
-            sleep(720)
+            sleep(735)
             Drive(0,0)
             sleep(500)
             Drive(50,-50) #Forward
@@ -259,7 +259,7 @@ def driveTheCar(nextdirection):
         elif carAngle == 0:
             Drive(50,50) #Turn right twice as long 
             display.show(Image.ARROW_W)
-            sleep(720)
+            sleep(735)
             Drive(0,0)
             sleep(500)
             Drive(50,-50) #Forward
@@ -291,8 +291,9 @@ def directionFinder(updateMap):
     
     n = 0
     listtt = []
+    moveLimit = 10000
     
-    while n < 10:
+    while n < moveLimit: #The car will only drive the amount of times it needs to
 
         north, south, east, west = 1000, 1000, 1000, 1000
         
@@ -321,22 +322,27 @@ def directionFinder(updateMap):
                 updateMap[i][j+1] += 1000
                 east += 1000
 
+        #This if statement is only true at the beginning
         if i == start_i and j == start_j: #To make the first move when start is 99
             if i != 0:
                 if north < south and north < west and north < east:
                     i -= 1
+                    moveLimit = north - 1 #Car only needs to move what north tile reads - 1 amount of times
                     nextdirection = "N"
             if i != 8:
                 if south < north and south < west and south < east:
                     i += 1
+                    moveLimit = south - 1 
                     nextdirection = "S"
             if j != 3:
                 if east < south and east < west and east < north:
                     j += 1
+                    moveLimit = east - 1
                     nextdirection = "E"
             if j != 0:
                 if west < south and west < north and west < east:
                     j -= 1
+                    moveLimit = west - 1
                     nextdirection = "W"
             
         if i != 0: #For all other cases where the car is not at start
