@@ -14,7 +14,6 @@ Assignment Information
 
 from microbit import *
 import robotbit_library as r
-import pathfnder as path
 
 count = 0
 M1A = 0x1
@@ -28,8 +27,6 @@ def Drive(lft,rgt):
     r.motor(M1A, rgt)
     return 0
 
-carAngle = 90 #We will be starting the car north, 90 degrees on the unit circle
-
 givenMap = [[0,1,0,2],
             [1,0,1,0],
             [0,0,1,0],
@@ -39,6 +36,8 @@ givenMap = [[0,1,0,2],
             [0,1,0,1],
             [99,1,0,0],
             [0,0,0,0]]
+
+carAngle = 90
 
 def Nissan2002PathFinder(updateMap):  
     currentGoal = 2
@@ -98,15 +97,16 @@ def Nissan2002PathFinder(updateMap):
                 if row == len(updateMap) - 1 and col == len(updateMap[row]) - 1: #Only try again after iterating through the entire map
                     currentGoal += 1 #Increase goal by 1 to move onwards
                     occurrence = 1 #Set the occurrence count back to 1
-    print(updateMap)
     return updateMap
 
 
-def driveTheCar(nextdirection, carAngle):
+def driveTheCar(nextdirection):
+
+    global carAngle
     
     if nextdirection == "N":
         if carAngle == 90:
-            Drive(50,-50)
+            Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
             sleep(765)
             Drive(0,0)
@@ -148,7 +148,7 @@ def driveTheCar(nextdirection, carAngle):
 
     elif nextdirection == "S":
         if carAngle == 270:
-            Drive(50,-50)
+            Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
             sleep(765)
             Drive(0,0)
@@ -237,7 +237,7 @@ def driveTheCar(nextdirection, carAngle):
             Drive(0,0)
             sleep(1000)
         elif carAngle == 90:
-            Drive(-50,-50) ##turn left
+            Drive(-50,-50) #turn left
             display.show(Image.ARROW_E)
             sleep(380)
             Drive(50,-50) #Forward
@@ -273,7 +273,6 @@ def driveTheCar(nextdirection, carAngle):
         Drive(0,0)
         
     Drive(0,0)
-    return carAngle
     
 def directionFinder(updateMap):
     nextdirection = ""
@@ -286,9 +285,9 @@ def directionFinder(updateMap):
                 start_j = col
                 
     i = start_i
-    print(i)
     j = start_j
-    print(j)
+    print('Start Point:')
+    print(i, j)
     
     n = 0
     listtt = []
@@ -339,44 +338,41 @@ def directionFinder(updateMap):
                 if west < south and west < north and west < east:
                     j -= 1
                     nextdirection = "W"
-            print(updateMap)
-            print(north, south, west, east)
             
-        elif i != 0: #For all other cases where the car is not at start
+        if i != 0: #For all other cases where the car is not at start
             if north == updateMap[i][j] - 1:
                 i -= 1
                 nextdirection = "N"
         
-        elif i != 8:
+        if i != 8:
             if south == updateMap[i][j] - 1:
                 i += 1
                 nextdirection = "S"
             
-        elif (j != 0):
+        if (j != 0):
             if west == updateMap[i][j] - 1:
                 j -= 1
                 nextdirection = "W"
                 
-        elif j!=3:
+        if j!=3:
             if east == updateMap[i][j] - 1:
                 j += 1
                 nextdirection = "E"
 
-        print(nextdirection)
         listtt.append(nextdirection)
-        n += 1
-        print(i, j)       
-        carAngle = driveTheCar(nextdirection, carAngle)      
-    
-
-        
+        n += 1       
+        print("\nCurrent Direction of Movement:")
+        print(nextdirection)
+        print("Current Location:")
+        print(i, j)
+        driveTheCar(nextdirection)
         
     Drive(0,0)
     print(listtt)
 
         
 def main():
-    newMap = path.Nissan2002PathFinder(givenMap)
+    newMap = Nissan2002PathFinder(givenMap)
     directionFinder(newMap)
     
     
