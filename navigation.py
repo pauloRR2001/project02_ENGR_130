@@ -62,8 +62,8 @@ def driveTheCar(nextdirection):
             Drive(0,0)
             sleep(1000)
         elif carAngle == 0:
-            Drive(-50,-50) #should make function called turn left (Drive(-50, -50))
-            display.show(Image.ARROW_W)
+            Drive(-50,-50) #turn left
+            display.show(Image.ARROW_E)
             sleep(380)
             Drive(50,-50)
             display.show(Image.ARROW_N)
@@ -72,7 +72,7 @@ def driveTheCar(nextdirection):
             sleep(1000)
             carAngle = 90
         elif carAngle == 180:
-            Drive(50,50) #should make function called turn right (Drive(50, 50))
+            Drive(50,50) #turn right
             display.show(Image.ARROW_W)
             sleep(380)
             Drive(50,-50)
@@ -82,8 +82,8 @@ def driveTheCar(nextdirection):
             sleep(1000)
             carAngle = 90
         elif carAngle == 270:
-            Drive(-50,-50) #Turn left for twice as long 
-            display.show(Image.ARROW_S)
+            Drive(50,50) #Turn left for twice as long 
+            display.show(Image.ARROW_W)
             sleep(720)
             Drive(0,0)
             sleep(500)
@@ -104,8 +104,8 @@ def driveTheCar(nextdirection):
             Drive(0,0)
             sleep(1000)
         elif carAngle == 180:
-            Drive(50,50) #should make function called turn left (Drive(50, 50))
-            display.show(Image.ARROW_W)
+            Drive(-50,-50) #turn left
+            display.show(Image.ARROW_E)
             sleep(380)
             Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
@@ -114,7 +114,7 @@ def driveTheCar(nextdirection):
             sleep(1000)
             carAngle = 270
         elif carAngle == 0:
-            Drive(-50,-50) #should make function called turn right (Drive(-50, -50))
+            Drive(50,50) #turn right
             display.show(Image.ARROW_W)
             sleep(380)
             Drive(50,-50) #Forward
@@ -124,7 +124,7 @@ def driveTheCar(nextdirection):
             sleep(1000)
             carAngle = 270
         elif carAngle == 90:
-            Drive(-50,-50) #Turn right twice as long 
+            Drive(50,50) #Turn right twice as long 
             display.show(Image.ARROW_W)
             sleep(720)
             Drive(0,0)
@@ -145,8 +145,8 @@ def driveTheCar(nextdirection):
             Drive(0,0)
             sleep(1000)
         elif carAngle == 270:
-            Drive(50,50) #should make function called turn left (Drive(50, 50))
-            display.show(Image.ARROW_W)
+            Drive(-50,-50) #turn left
+            display.show(Image.ARROW_E)
             sleep(380)
             Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
@@ -155,7 +155,7 @@ def driveTheCar(nextdirection):
             sleep(1000)
             carAngle = 0
         elif carAngle == 90:
-            Drive(-50,-50) #should make function called turn right (Drive(-50, -50))
+            Drive(50,50) #turn right
             display.show(Image.ARROW_W)
             sleep(380)
             Drive(50,-50) #Forward
@@ -165,7 +165,7 @@ def driveTheCar(nextdirection):
             sleep(1000)
             carAngle = 0
         elif carAngle == 180:
-            Drive(-50,-50) #Turn right twice as long 
+            Drive(50,50) #Turn right twice as long 
             display.show(Image.ARROW_W)
             sleep(720)
             Drive(0,0)
@@ -186,8 +186,8 @@ def driveTheCar(nextdirection):
             Drive(0,0)
             sleep(1000)
         elif carAngle == 90:
-            Drive(50,50) #should make function called turn left (Drive(50, 50))
-            display.show(Image.ARROW_W)
+            Drive(-50,-50) ##turn left
+            display.show(Image.ARROW_E)
             sleep(380)
             Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
@@ -196,7 +196,7 @@ def driveTheCar(nextdirection):
             sleep(1000)
             carAngle = 180
         elif carAngle == 270:
-            Drive(-50,-50) #should make function called turn right (Drive(-50, -50))
+            Drive(50,50) #turn right
             display.show(Image.ARROW_W)
             sleep(380)
             Drive(50,-50) #Forward
@@ -206,7 +206,7 @@ def driveTheCar(nextdirection):
             sleep(1000)
             carAngle = 180
         elif carAngle == 0:
-            Drive(-50,-50) #Turn right twice as long 
+            Drive(50,50) #Turn right twice as long 
             display.show(Image.ARROW_W)
             sleep(720)
             Drive(0,0)
