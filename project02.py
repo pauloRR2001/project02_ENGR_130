@@ -300,6 +300,12 @@ def directionFinder(updateMap):
 	if it is reading something to a certain calibrated distance it uses a Return statement to break out of the entire
 	function and go back to main returning only a i j location e that means (obstacle encountered) after that we can call everything
 	again and put a wall in that i j location
+	
+	if (scanner function of something) == (distance):
+	return([i,j])
+	
+	when main realizes it was returned a list of i and j it will trigger another if statement that calls nissan 2002 again with these
+	i j and map as input
 	"""
 	
         north, south, east, west = 1000, 1000, 1000, 1000
