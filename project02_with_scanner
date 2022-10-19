@@ -429,7 +429,7 @@ def main():
     	i j and map as input
      
     """
-    output = [0,0]
+    output = ['s','s']
     newMap = Nissan2002PathFinder(givenMap, 's', 's')
     output = directionFinder(newMap)
     if type(output[1]) == int:
