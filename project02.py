@@ -294,7 +294,14 @@ def directionFinder(updateMap):
     moveLimit = 10000
     
     while n < moveLimit: #The car will only drive the amount of times it needs to
-
+	
+	"""
+	since this is inside of the while loop, we can add an if statement here that checks the reading of the scanner
+	if it is reading something to a certain calibrated distance it uses a Return statement to break out of the entire
+	function and go back to main returning only a i j location e that means (obstacle encountered) after that we can call everything
+	again and put a wall in that i j location
+	"""
+	
         north, south, east, west = 1000, 1000, 1000, 1000
         
             
