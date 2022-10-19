@@ -394,6 +394,15 @@ def main():
     newMap = Nissan2002PathFinder(givenMap)
     directionFinder(newMap)
     
+
+    """
+    output = directionFinder(newMap)
+    i = output[0]
+    j = output[1]
+    if output == type(list):
+    	newMap = Nissan2002PathFinder(newMap, i, j)
+    """
+    
     
 if __name__ == "__main__":
     main()
