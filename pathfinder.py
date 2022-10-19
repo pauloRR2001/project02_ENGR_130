@@ -56,5 +56,4 @@ def Nissan2002PathFinder(updateMap):
                 if row == len(updateMap) - 1 and col == len(updateMap[row]) - 1: #Only try again after iterating through the entire map
                     currentGoal += 1 #Increase goal by 1 to move onwards
                     occurrence = 1 #Set the occurrence count back to 1
-                
     return updateMap
