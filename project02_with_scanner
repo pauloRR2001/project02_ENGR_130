@@ -65,7 +65,14 @@ def Nissan2002PathFinder(updateMap, i_obst, j_obst):
 
     #scanner if statement
     if type(i_obst) == int:
-        updateMap[i_obst][j_obst] = 1
+        if carAngle == 90:
+            updateMap[i_obst-1][j_obst] = 1
+        if carAngle == 0:
+            updateMap[i_obst][j_obst+1] = 1
+        if carAngle == 180:
+            updateMap[i_obst][j_obst-1] = 1
+        if carAngle == 270:
+            updateMap[i_obst+1][j_obst] = 1
     
     currentGoal = 2
     foundGoal = True
@@ -161,7 +168,7 @@ def driveTheCar(nextdirection):
         elif carAngle == 270:
             Drive(50,50) #Turn right for twice as long 
             display.show(Image.ARROW_W)
-            sleep(735)
+            sleep(750)
             Drive(0,0)
             sleep(500)
             Drive(50,-50)
@@ -203,7 +210,7 @@ def driveTheCar(nextdirection):
         elif carAngle == 90:
             Drive(50,50) #Turn right twice as long 
             display.show(Image.ARROW_W)
-            sleep(735)
+            sleep(750)
             Drive(0,0)
             sleep(500)
             Drive(50,-50) #Forward
@@ -245,7 +252,7 @@ def driveTheCar(nextdirection):
         elif carAngle == 180:
             Drive(50,50) #Turn right twice as long 
             display.show(Image.ARROW_W)
-            sleep(735)
+            sleep(750)
             Drive(0,0)
             sleep(500)
             Drive(50,-50) #Forward
@@ -286,7 +293,7 @@ def driveTheCar(nextdirection):
         elif carAngle == 0:
             Drive(50,50) #Turn right twice as long 
             display.show(Image.ARROW_W)
-            sleep(735)
+            sleep(750)
             Drive(0,0)
             sleep(500)
             Drive(50,-50) #Forward
@@ -323,7 +330,8 @@ def directionFinder(updateMap):
     while n < moveLimit: #The car will only drive the amount of times it needs to
 
         dist = distance(TRIGGER, ECHO)
-        if dist == 10:
+        if dist < 100:
+            print(i, j)
             return [i,j]
 
         
@@ -416,19 +424,7 @@ def main():
     #directionFinder(newMap)
     
 
-    """
-    inside of the while loop, we can add an if statement here that checks the reading of the scanner
-    	if it is reading something to a certain calibrated distance it uses a Return statement to break out of the entire
-    	function and go back to main returning only a i j location e that means (obstacle encountered) after that we can call everything
-    	again and put a wall in that i j location
-    	
-    	if (scanner function of something) == (distance):
-    	return([i,j])
-    	
-    	when main realizes it was returned a list of i and j it will trigger another if statement that calls nissan 2002 again with these
-    	i j and map as input
-     
-    """
+   
     output = ['s','s']
     newMap = Nissan2002PathFinder(givenMap, 's', 's')
     output = directionFinder(newMap)
@@ -436,6 +432,7 @@ def main():
         i_obst = output[0]
         j_obst = output[1]
         newMap = Nissan2002PathFinder(newMap, i_obst, j_obst)
+        output = directionFinder(newMap)
     
     
     
