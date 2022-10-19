@@ -64,7 +64,7 @@ carAngle = 90
 def Nissan2002PathFinder(updateMap, i_obst, j_obst):
 
     #scanner if statement
-    if type(i_obst) == int:
+    if i_obst != 's':
         if carAngle == 90:
             updateMap[i_obst-1][j_obst] = 1
         if carAngle == 0:
@@ -142,26 +142,26 @@ def driveTheCar(nextdirection):
         if carAngle == 90:
             Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
-            sleep(765)
+            sleep(750)
             Drive(0,0)
             sleep(1000)
         elif carAngle == 0:
             Drive(-50,-50) #turn left
             display.show(Image.ARROW_E)
-            sleep(380)
+            sleep(382)
             Drive(50,-50)
             display.show(Image.ARROW_N)
-            sleep(765)
+            sleep(750)
             Drive(0,0)
             sleep(1000)
             carAngle = 90
         elif carAngle == 180:
             Drive(50,50) #turn right
             display.show(Image.ARROW_W)
-            sleep(380)
+            sleep(382)
             Drive(50,-50)
             display.show(Image.ARROW_N)
-            sleep(765)
+            sleep(750)
             Drive(0,0)
             sleep(1000)
             carAngle = 90
@@ -173,7 +173,7 @@ def driveTheCar(nextdirection):
             sleep(500)
             Drive(50,-50)
             display.show(Image.ARROW_N)
-            sleep(765)
+            sleep(750)
             Drive(0,0)
             display.show(Image.CHESSBOARD)
             sleep(1000)
@@ -184,26 +184,26 @@ def driveTheCar(nextdirection):
         if carAngle == 270:
             Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
-            sleep(765)
+            sleep(750)
             Drive(0,0)
             sleep(1000)
         elif carAngle == 180:
             Drive(-50,-50) #turn left
             display.show(Image.ARROW_E)
-            sleep(380)
+            sleep(382)
             Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
-            sleep(765)
+            sleep(750)
             Drive(0,0)
             sleep(1000)
             carAngle = 270
         elif carAngle == 0:
             Drive(50,50) #turn right
             display.show(Image.ARROW_W)
-            sleep(380)
+            sleep(382)
             Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
-            sleep(765)
+            sleep(750)
             Drive(0,0)
             sleep(1000)
             carAngle = 270
@@ -215,7 +215,7 @@ def driveTheCar(nextdirection):
             sleep(500)
             Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
-            sleep(765)
+            sleep(750)
             Drive(0,0)
             display.show(Image.CHESSBOARD)
             sleep(1000)
@@ -225,27 +225,27 @@ def driveTheCar(nextdirection):
         if carAngle == 0:
             Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
-            sleep(765)
+            sleep(750)
             Drive(0,0)
             sleep(1000)
             carAngle = 0
         elif carAngle == 270:
             Drive(-50,-50) #turn left
             display.show(Image.ARROW_E)
-            sleep(380)
+            sleep(382)
             Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
-            sleep(765)
+            sleep(750)
             Drive(0,0)
             sleep(1000)
             carAngle = 0
         elif carAngle == 90:
             Drive(50,50) #turn right
             display.show(Image.ARROW_W)
-            sleep(380)
+            sleep(382)
             Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
-            sleep(765)
+            sleep(750)
             Drive(0,0)
             sleep(1000)
             carAngle = 0
@@ -257,7 +257,7 @@ def driveTheCar(nextdirection):
             sleep(500)
             Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
-            sleep(765)
+            sleep(750)
             Drive(0,0)
             display.show(Image.CHESSBOARD)
             sleep(1000)
@@ -267,26 +267,26 @@ def driveTheCar(nextdirection):
         if carAngle == 180:
             Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
-            sleep(765)
+            sleep(750)
             Drive(0,0)
             sleep(1000)
         elif carAngle == 90:
             Drive(-50,-50) #turn left
             display.show(Image.ARROW_E)
-            sleep(380)
+            sleep(382)
             Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
-            sleep(765)
+            sleep(750)
             Drive(0,0)
             sleep(1000)
             carAngle = 180
         elif carAngle == 270:
             Drive(50,50) #turn right
             display.show(Image.ARROW_W)
-            sleep(380)
+            sleep(382)
             Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
-            sleep(765)
+            sleep(750)
             Drive(0,0)
             sleep(1000)
             carAngle = 180
@@ -298,7 +298,7 @@ def driveTheCar(nextdirection):
             sleep(500)
             Drive(50,-50) #Forward
             display.show(Image.ARROW_N)
-            sleep(765)
+            sleep(750)
             Drive(0,0)
             display.show(Image.CHESSBOARD)
             sleep(1000)
@@ -332,6 +332,7 @@ def directionFinder(updateMap):
         dist = distance(TRIGGER, ECHO)
         if dist < 100:
             print(i, j)
+            display.show(Image.HOUSE)
             return [i,j]
 
         
@@ -423,12 +424,11 @@ def main():
     #newMap = Nissan2002PathFinder(givenMap)
     #directionFinder(newMap)
     
-
-   
     output = ['s','s']
     newMap = Nissan2002PathFinder(givenMap, 's', 's')
     output = directionFinder(newMap)
-    if type(output[1]) == int:
+    
+    if output[1] != 's':
         i_obst = output[0]
         j_obst = output[1]
         newMap = Nissan2002PathFinder(newMap, i_obst, j_obst)
