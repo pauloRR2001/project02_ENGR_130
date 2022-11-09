@@ -10,3 +10,58 @@
 
 
 if __name__ == '__main__':
+
+# Imports go at the top
+from microbit import *
+import robotbit_library as r
+import detect_snow as snow
+
+S1 = 0x1
+S2 = 0x2
+S3 = 0x3
+S4 = 0x4
+S5 = 0x5
+S6 = 0x6
+S7 = 0x7
+S8 = 0x8
+
+r.setup()
+display.show("S")
+
+from microbit import *
+
+def detect():
+    display.scroll("Scanning for MEXICANS")
+
+    light_level = pin1.read_analog()
+    
+    return light_level
+    
+    
+# Imports go at the top
+from microbit import *
+import robotbit_library as r
+import detect_snow as snow
+
+S1 = 0x1
+S2 = 0x2
+S3 = 0x3
+S4 = 0x4
+S5 = 0x5
+S6 = 0x6
+S7 = 0x7
+S8 = 0x8
+
+r.setup()
+display.show("S")
+
+while(True):
+    #Sensor Detection method
+    snow.detect()
+    
+    angleSetting = [180, 120]
+    for angle in angleSetting:
+        r.servo(S1, angle)
+        r.servo(S3, angle)
+        print("angle = {}".format(angle))
+        sleep(3420)
