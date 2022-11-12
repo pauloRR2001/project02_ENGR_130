@@ -1,0 +1,34 @@
+from microbit import *
+import robotbit_library as r
+import radio
+import sled_toggle
+chnl = 19 #change channel to your team number
+# Define Ports for the bank of high current output
+M1A = 0x1
+M1B = 0x2
+M2A = 0x3
+M2B = 0x4
+r.setup()
+
+radio.config(channel=chnl)
+radio.on()
+
+def Drive(lft,rgt):
+    r.motor(M2B, lft)
+    r.motor(M1A, rgt)
+
+isDown = False;
+while True:
+    isDown = sled_toggle.see_snow(isDown)
+    s = radio.receive()
+    if s is not None:
+        if s=="N":
+            Drive(-50,50)
+            display.show(Image.ARROW_E)
+        elif s=="S":
+            Drive(50,-50)
+            display.show(Image.ARROW_W)
+    else:
+        Drive(0,0)
+    sleep(20)
+
