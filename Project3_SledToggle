@@ -1,0 +1,42 @@
+from microbit import *
+import lux_ult as root
+import robotbit_library as r
+# Define ports for the band of high current output S1-8
+S1 = 0x1 # used for standard servo in this example
+S2 = 0x2
+S3 = 0x3
+S4 = 0x4
+S5 = 0x5
+S6 = 0x6
+S7 = 0x7
+S8 = 0x8
+
+r.setup()      # set up the robotbit
+
+def see_snow(sled_down):
+    light = root.lucent_singularity()
+    if light <= 40:
+        if sled_down == False:
+            sled_toggle()
+            print('The sled is now down')
+            sled_down = True
+    elif light > 40:
+        if sled_down == True:
+            sled_toggle()
+            print('The sled is now up')
+            sled_down = False
+    return sled_down
+
+def sled_toggle():
+    r.servo(S1, 146.75) #Motion the servos to rotate
+    r.servo(S3, 80.92) #This servo faces right, 180 - angle to ensure
+    #that they rotate in the same direction
+    sleep(445)
+    r.servo(S1, 117) #Motion the servos to stop/personally calibrated
+    r.servo(S3, 115)
+    return 0
+        
+        
+        
+        
+
