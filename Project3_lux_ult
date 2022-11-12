@@ -1,0 +1,6 @@
+from microbit import *
+
+#Infrared Sensor detection, returns light value
+def lucent_singularity():
+    light_level = pin1.read_analog() #Get light reading
+    return light_level
