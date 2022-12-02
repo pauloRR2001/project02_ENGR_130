@@ -13,15 +13,16 @@ r.setup()
 radio.config(channel=chnl)
 radio.on()
 
+#function to move wheels of scooter
 def Drive(lft,rgt):
     r.motor(M2B, lft)
     r.motor(M1A, rgt)
 
-isDown = False;
+isDown = False; #initializing position of sled
 while True:
-    isDown = sled_toggle.see_snow(isDown)
+    isDown = sled_toggle.see_snow(isDown) #calls function to determine whether sled should be up or down
     s = radio.receive()
-    if s is not None:
+    if s is not None: #moves scooter in direction controller tells it to move
         if s=="N":
             Drive(-50,50)
             display.show(Image.ARROW_E)
