@@ -13,9 +13,9 @@ S8 = 0x8
 
 r.setup()      # set up the robotbit
 
-def see_snow(sled_down):
+def see_snow(sled_down): #uses strength of reflected light from IR sensor value to either movethe sled down or ligt it up
     light = root.lucent_singularity()
-    if light <= 40:
+    if light <= 40: #40 was the value used to determine whether there was snow or not. If "light" is less than or equal than 40, then sled would be down. If not, sled is up
         if sled_down == False:
             sled_toggle()
             print('The sled is now down')
